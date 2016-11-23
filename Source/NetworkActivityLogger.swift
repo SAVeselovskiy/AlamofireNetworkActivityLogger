@@ -126,7 +126,7 @@ public class NetworkActivityLogger {
             
             if let httpHeadersFields = request.allHTTPHeaderFields {
                 for (key, value) in httpHeadersFields {
-                    NSLog("AlamofireLogging: \(key): \(value)")
+                    NSLog("\(key): \(value)")
                 }
             }
             
@@ -168,7 +168,7 @@ public class NetworkActivityLogger {
                  .warn,
                  .error:
                 NSLog("AlamofireLogging: [Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
-                NSLog("AlamofireLogging: \(error)")
+                NSLog("\(error)")
             default:
                 break
             }
@@ -182,7 +182,7 @@ public class NetworkActivityLogger {
                 NSLog("AlamofireLogging: \(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                 
                 for (key, value) in response.allHeaderFields {
-                    NSLog("AlamofireLogging: \(key): \(value)")
+                    NSLog("\(key): \(value)")
                 }
             case .info:
                 NSLog("AlamofireLogging: \(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
