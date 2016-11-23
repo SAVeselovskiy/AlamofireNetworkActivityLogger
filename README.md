@@ -4,7 +4,7 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/AlamofireNetworkActivityLogger.svg?style=flat)](http://cocoadocs.org/docsets/AlamofireNetworkActivityLogger)
 
-Network activity logger for Alamofire.
+Network activity logger for Alamofire. Using NSLog instead of print for device logs
 
 ## Requirements
 
