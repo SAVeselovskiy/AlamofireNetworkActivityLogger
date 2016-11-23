@@ -122,17 +122,17 @@ public class NetworkActivityLogger {
         
         switch level {
         case .debug:
-            NSLog("AlamofireLogging: \(httpMethod) '\(requestURL.absoluteString)':")
-            
+            var log = "AlamofireLogging: \(httpMethod) '\(requestURL.absoluteString)':\n"
             if let httpHeadersFields = request.allHTTPHeaderFields {
                 for (key, value) in httpHeadersFields {
-                    NSLog("\(key): \(value)")
+                    log += "\(key): \(value)\n"
                 }
             }
             
             if let httpBody = request.httpBody, let httpBodyString = String(data: httpBody, encoding: .utf8) {
-                NSLog("AlamofireLogging: \(httpBodyString)")
+                log += "AlamofireLogging: \(httpBodyString)"
             }
+            NSLog(log)
         case .info:
             NSLog("AlamofireLogging: \(httpMethod) '\(requestURL.absoluteString)'")
         default:
@@ -167,8 +167,7 @@ public class NetworkActivityLogger {
                  .info,
                  .warn,
                  .error:
-                NSLog("AlamofireLogging: [Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
-                NSLog("\(error)")
+                NSLog("AlamofireLogging: [Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:\n \(error)")
             default:
                 break
             }
@@ -179,11 +178,12 @@ public class NetworkActivityLogger {
             
             switch level {
             case .debug:
-                NSLog("AlamofireLogging: \(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                var log = "AlamofireLogging: \(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:\n"
                 
                 for (key, value) in response.allHeaderFields {
-                    NSLog("\(key): \(value)")
+                    log += "\(key): \(value)\n"
                 }
+                NSLog(log)
             case .info:
                 NSLog("AlamofireLogging: \(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
             default:
