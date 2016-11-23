@@ -122,19 +122,19 @@ public class NetworkActivityLogger {
         
         switch level {
         case .debug:
-            print("\(httpMethod) '\(requestURL.absoluteString)':")
+            NSLog("\(httpMethod) '\(requestURL.absoluteString)':")
             
             if let httpHeadersFields = request.allHTTPHeaderFields {
                 for (key, value) in httpHeadersFields {
-                    print("\(key): \(value)")
+                    NSLog("\(key): \(value)")
                 }
             }
             
             if let httpBody = request.httpBody, let httpBodyString = String(data: httpBody, encoding: .utf8) {
-                print(httpBodyString)
+                NSLog(httpBodyString)
             }
         case .info:
-            print("\(httpMethod) '\(requestURL.absoluteString)'")
+            NSLog("\(httpMethod) '\(requestURL.absoluteString)'")
         default:
             break
         }
@@ -167,8 +167,8 @@ public class NetworkActivityLogger {
                  .info,
                  .warn,
                  .error:
-                print("[Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
-                print(error)
+                NSLog("[Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                NSLog(error)
             default:
                 break
             }
@@ -179,13 +179,13 @@ public class NetworkActivityLogger {
             
             switch level {
             case .debug:
-                print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                NSLog("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                 
                 for (key, value) in response.allHeaderFields {
-                    print("\(key): \(value)")
+                    NSLog("\(key): \(value)")
                 }
             case .info:
-                print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
+                NSLog("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
             default:
                 break
             }
